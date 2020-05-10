@@ -1,38 +1,179 @@
-.App {
+
+body{
+  background: #1b1933;
+  color:#fffeff;
+  font-family: "Montserrat";
+}
+
+.uploader{
+  display: none;
+}
+
+span p {
+  color: #56bd8c;
+  font-weight: 900;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#upload-wrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.fa-images{
+  font-size: 20px;
+  margin-right: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.upload-label{
+  display: block;
+  width: 90%;
+  height: 30vh;
+  border-radius: 4px;
+  font-weight: 900;
+  line-height: 30vh;
+  text-align:center;
+  background: #23213f;
+  border: 2px dashed #56bd8c;
+}
+
+#preview{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  margin: 50px 0px;
+  animation: fadeInUp 2s;
+  animation-delay: 200ms;
+  animation-fill-mode: forwards;
+  border-bottom: 1px solid #2d2958;
+  padding-bottom: 70px;
 }
 
-.App-link {
-  color: #61dafb;
+#preview img {
+  max-width: 90%;
+  margin: 0 auto;
+  display: block;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.download{
+  color: #fffeff;
+  border: 1px solid #fffeff;
+  text-transform:  uppercase;
+  text-decoration: none;
+  padding: 5px 15px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 15px 10px 0px 0px;
+}
+
+.download-wrapper{
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+
+.download-url{
+  animation: fadeInUp 1s;
+  max-width: 50%;
+  padding: 10px;
+  text-decoration: none;
+  color: #56bd8c;
+  border-bottom: 1px solid #56bd8c;
+  word-break: break-all;
+  cursor: pointer;
+  margin: 20px 0px;
+}
+
+.animated {
+  opacity: 0
+}
+
+@keyframes fadeInUp {
+  0% {
+      transform: translate3d(0,40px,0)
   }
-  to {
-    transform: rotate(360deg);
+
+  100% {
+      transform: translate3d(0,0,0);
+      opacity: 1
   }
+}
+
+
+.loader {
+  margin-top: 20px;
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid #56bd8c;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.edit-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0px;
+}
+
+.animated:nth-child(1){
+  animation-delay: 1s;
+}
+.animated:nth-child(2){
+  animation-delay: 1.3s;
+}
+.animated:nth-child(3){
+  animation-delay: 1.6s;
+}
+.animated:nth-child(4){
+  animation-delay: 1.9s;
+}
+.animated:nth-child(5){
+  animation-delay: 2.4s;
+}
+.animated:nth-child(6){
+  animation-delay: 3s;
+}
+
+#croppie-container{
+  width: 100%;
+  max-height: 500px;
+  height: 400px;
+}
+
+#croppie-container img{
+  max-width: 100%;
+}
+
+canvas{
+  border: 1px solid white;
+  max-width: 90%;
+  display: block;
+  margin: 0 auto;
 }
