@@ -25,7 +25,8 @@ class App extends React.Component {
     {
       width: 380,
       height: 380,
-    }]
+    }],
+    checkSize: false,
   }
 
   handleChange = async (e) => {
@@ -34,7 +35,7 @@ class App extends React.Component {
     let img, height, width;
     let _this = this;
 
-    let { sizes } = this.state;
+    let { sizes, checkSize } = this.state;
 
     if (file && file[0]) {
       img = new Image();
@@ -43,14 +44,15 @@ class App extends React.Component {
         width = this.width;
         height = this.height;
 
-        if( width !== 1024 && height !== 1024) {
-          alert("Wrong size")
-          return;
-        }
-
         _URL.revokeObjectURL(objectUrl);
         _this.setState({ file, objectUrl, width, height, buttonVisible: false });
 
+        if( checkSize && width !== 1024 && height !== 1024) {
+          alert("Wrong size")
+          _this.setState({ objectUrl: null, buttonVisible: true })
+          return;
+        }
+        
         // _this.resizeImage(365, 450);
         sizes.map(async (item) => {
           let d = await _this.resizeImage(item.width, item.height)
@@ -58,11 +60,10 @@ class App extends React.Component {
           item.blobUrl = _URL.createObjectURL(d);
           _this.setState({ sizes });
         });
-
-
-
       };
+
       img.src = objectUrl;
+      
       this.setState({ file, objectUrl, width, height });
 
     }
@@ -93,7 +94,7 @@ class App extends React.Component {
   }
 
   uploadNew = () => {
-    this.setState({ editorOn: false, editIndex: null, buttonVisible: true });
+    this.setState({ file: null, editorOn: false, editIndex: null, buttonVisible: true });
   }
 
   callBack = (blob) => {
@@ -149,6 +150,13 @@ class App extends React.Component {
                 <i class="fas fa-images"></i> Upload Image
               </label>
               <input className="uploader" id="imageUpload" name="imageUpload" type="file" onChange={(e) => this.handleChange(e)} name="myImage" accept="image/x-png,image/gif,image/jpeg" />
+              <br/> <label 
+               for="check"
+               onClick={(e) =>  { this.setState({ checkSize: !this.state.checkSize }) }}> 
+              <input type="checkbox"
+                id="check"
+                checked={this.state.checkSize} 
+              /> Size should be 1024x1024 </label>
             </div>
           </>
         }
