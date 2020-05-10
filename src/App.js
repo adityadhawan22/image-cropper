@@ -43,10 +43,10 @@ class App extends React.Component {
         width = this.width;
         height = this.height;
 
-        // if( width !== 1024 && height !== 1024) {
-        //   alert("Wrong size")
-        //   return;
-        // }
+        if( width !== 1024 && height !== 1024) {
+          alert("Wrong size")
+          return;
+        }
 
         _URL.revokeObjectURL(objectUrl);
         _this.setState({ file, objectUrl, width, height, buttonVisible: false });
